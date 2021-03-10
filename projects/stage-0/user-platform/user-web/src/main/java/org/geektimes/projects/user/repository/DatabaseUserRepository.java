@@ -43,6 +43,22 @@ public class DatabaseUserRepository implements UserRepository {
 
     @Override
     public boolean save(User user) {
+        String sql = "INSERT INTO users (id,name,password,email,phoneNumber) VALUES (?, ?, ?, ?, ?)";
+        Connection connection = getConnection();
+        PreparedStatement ps = null;
+        int index = 1;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setLong(index++, user.getId());
+            ps.setString(index++, user.getName());
+            ps.setString(index++, user.getPassword());
+            ps.setString(index++, user.getEmail());
+            ps.setString(index++, user.getPhoneNumber());
+            int resultSet = ps.executeUpdate();
+            return resultSet == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -59,6 +75,21 @@ public class DatabaseUserRepository implements UserRepository {
     @Override
     public User getById(Long userId) {
         return null;
+    }
+
+    @Override
+    public User getByName(String name) {
+        return executeQuery("select * from users where name = ?",resultSet -> {
+            User user = null;
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setName(resultSet.getString("name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+            }
+            return user;
+        }, COMMON_EXCEPTION_HANDLER, name);
     }
 
     @Override
