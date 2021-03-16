@@ -43,13 +43,12 @@ public class DatabaseUserRepository implements UserRepository {
 
     @Override
     public boolean save(User user) {
-        String sql = "INSERT INTO users (id,name,password,email,phoneNumber) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (name,password,email,phoneNumber) VALUES (?, ?, ?, ?)";
         Connection connection = getConnection();
         PreparedStatement ps = null;
         int index = 1;
         try {
             ps = connection.prepareStatement(sql);
-            ps.setLong(index++, user.getId());
             ps.setString(index++, user.getName());
             ps.setString(index++, user.getPassword());
             ps.setString(index++, user.getEmail());

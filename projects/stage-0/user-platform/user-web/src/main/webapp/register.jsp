@@ -25,10 +25,10 @@
         <label class="sr-only">请输入姓名</label>
         <input type="text" id="name" name="name" class="form-control" placeholder="请输入姓名" REQUIRED AUTOFOCUS>
         <label for="password" class="sr-only">密码</label>
-        <input type="password" id="inputPassword" class="form-control"
+        <input type="password" id="inputPassword" name="password" class="form-control"
                 placeholder="请输入密码" required>
         <label for="inputEmail" class="sr-only">请输出电子邮件</label> <input
-            type="email" id="inputEmail" class="form-control"
+            type="email" id="inputEmail" name="email" class="form-control"
             placeholder="请输入电子邮件" required autofocus> <label
             for="inputPassword" class="sr-only">Password</label>
         <label for="inputPhoneNumber" class="sr-only">请输入电话</label>

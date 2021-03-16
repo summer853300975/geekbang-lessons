@@ -1,14 +1,17 @@
 package org.geektimes.projects.user.service.impl;
 
 import org.geektimes.projects.user.domain.User;
+import org.geektimes.projects.user.repository.DatabaseUserRepository;
 import org.geektimes.projects.user.repository.UserRepository;
 import org.geektimes.projects.user.service.UserService;
+import org.geektimes.projects.user.sql.DBConnectionManager;
 
 import java.util.Collection;
 
+
 public class UserServiceImpl implements UserService {
 
-    private UserRepository repository;
+    UserRepository repository = new DatabaseUserRepository(new DBConnectionManager());
     /**
      * 注册用户
      *

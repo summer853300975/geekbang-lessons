@@ -3,6 +3,7 @@ package org.geektimes.projects.user.web.controller;
 import org.apache.commons.lang.StringUtils;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.service.UserService;
+import org.geektimes.projects.user.service.impl.UserServiceImpl;
 import org.geektimes.web.mvc.controller.PageController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import javax.ws.rs.Path;
 @Path ("/register")
 public class RegisterController implements PageController {
 
-    private UserService userService;
+    UserService userService = new UserServiceImpl();
 
     /**
      * @param request  HTTP 请求
